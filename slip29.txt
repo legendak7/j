@@ -1,0 +1,183 @@
+slip29
+Q1
+import java.util.ArrayList;
+import java.util.List;
+
+class Customer {
+    private int custNo;
+    private String custName;
+    private String contactNumber;
+    private String custAddr;
+
+    public Customer(int custNo, String custName, String contactNumber, String custAddr) {
+        this.custNo = custNo;
+        this.custName = custName;
+        this.contactNumber = contactNumber;
+        this.custAddr = custAddr;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void displayDetails() {
+        System.out.println("Customer Number: " + custNo);
+        System.out.println("Customer Name: " + custName);
+        System.out.println("Contact Number: " + contactNumber);
+        System.out.println("Customer Address: " + custAddr);
+    }
+}
+
+public class CustomerSearch {
+    public static void main(String[] args) {
+
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(new Customer(1, "John Doe", "1234567890", "123 Main St"));
+        customerList.add(new Customer(2, "Jane Smith", "9876543210", "456 Elm St"));
+        customerList.add(new Customer(3, "David Johnson", "1112223333", "789 Oak St"));
+
+        String searchContactNumber = "9876543210";
+
+               Customer foundCustomer = null;
+        for (Customer customer : customerList) {
+            if (customer.getContactNumber().equals(searchContactNumber)) {
+                foundCustomer = customer;
+                break;
+            }
+        }
+
+
+        if (foundCustomer != null) {
+            System.out.println("Customer found:");
+            foundCustomer.displayDetails();
+        } else {
+            System.out.println("Customer not found.");
+        }
+    }
+}
+
+
+Q2
+
+ import java.io.*;
+class Vehicle
+{             
+                String cname;
+                float price;
+
+                void accept() throws IOException
+                {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                                System.out.println("Enter vehicle information");
+
+                                System.out.println("Enter Company name : ");
+                                cname= br.readLine();
+                                System.out.println("Enter price : ");
+                                price = Float.parseFloat(br.readLine());
+                }
+
+                void display()
+                {
+                                System.out.println("Company Name : "+cname+"\nPrice : "+price);
+                }
+
+}
+
+class LightMotorVehicle extends Vehicle
+{
+                int mileage;
+
+                void accept() throws IOException
+                {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                                super.accept();
+
+                                System.out.println("Enter mileage : ");
+                                mileage = Integer.parseInt(br.readLine());
+                }
+
+                void display()
+                {
+                                super.display();
+                                System.out.println("\nMileage : "+mileage);
+                }
+
+}
+
+class HeavyMotorVehicle extends Vehicle
+{
+                int capacity;
+
+                void accept() throws IOException
+                {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                                super.accept();
+
+                                System.out.println("Enter capacity in tones : ");
+                                capacity = Integer.parseInt(br.readLine());
+                }
+
+                void display()
+                {
+                                super.display();
+                                System.out.println("\nCapacity int tones  : "+capacity);
+                }
+
+}
+
+class Slip24_1
+{
+                public static void main(String args[]) throws IOException              
+                {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                                System.out.println("Enter type of vehicle \n1. for light motor vehicle \n2. for heavy motor vehicle  ");
+                                int ch = Integer.parseInt(br.readLine());
+                                int no;                  
+                                switch(ch)
+                                {
+                                                case 1 :System.out.println("Enter no of light motor");
+                                                                no = Integer.parseInt(br.readLine());
+                                                                LightMotorVehicle lv[] = new LightMotorVehicle[no];
+
+                                                                for(int i = 0 ; i < no; i++)
+                                                                {
+                                                                                lv[i] = new LightMotorVehicle();              
+                                                                                lv[i].accept();    
+                                                                }
+                                                                System.out.println("Information of light motor are");
+                                                                System.out.println("=======================");
+                                                                for(int i = 0 ; i < no; i++)
+                                                                {
+                                                                                //lv[i] = new LightMotorVehicle();          
+                                                                                lv[i].display();   
+                                                                }
+                                                                break;
+                                                case 2 :System.out.println("Enter no of heavy motor");
+                                                                no = Integer.parseInt(br.readLine());
+                                                                HeavyMotorVehicle hv[] = new HeavyMotorVehicle[no];
+
+                                                                for(int i = 0 ; i < no; i++)
+                                                                {
+                                                                                hv[i] = new HeavyMotorVehicle();          
+                                                                                hv[i].accept();  
+                                                                }
+                                                                System.out.println("Information of heavy motor are");
+                                                                System.out.println("=======================");
+                                                                for(int i = 0 ; i < no; i++)
+                                                                {
+                                                                                //lv[i] = new LightMotorVehicle();          
+                                                                                hv[i].display();  
+                                                                }
+                                                                break;
+                                                                //calculate_salary(mn,no);
+                                }
+                }             
+}

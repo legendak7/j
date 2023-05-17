@@ -1,0 +1,167 @@
+slip5
+Q1
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+class Continent
+{
+String con;
+InputStreamReader i = new InputStreamReader(System.in);
+BufferedReader r = new BufferedReader(i);
+void con_input() throws IOException
+{
+System.out.println("Enter Continent Name: ");
+con = r.readLine();
+}
+}
+class Country extends Continent
+{
+String cou ;
+void cou_input() throws IOException
+{
+System.out.println("Enter Country Name: ");
+cou = r.readLine();
+}
+}
+class State extends Country
+{
+String sta;
+void sta_input() throws IOException
+{
+System.out.println("Enter State Name: ");
+sta = r.readLine();
+}
+}
+class Main extends State
+{
+String pla;
+void pla_input()throws IOException
+{
+System.out.println("Enter Place Name : ");
+pla = r.readLine();
+
+}
+
+public static void main( String argsp[] )throws IOException
+{
+Main s = new Main();
+s.con_input();
+s.cou_input();
+s.sta_input();
+s.pla_input();
+System.out.println("\n\nContinent: "+s.con);
+System.out.println("Country: "+s.cou);
+System.out.println("State: "+s.sta);
+System.out.println("Place :" + s.pla);
+}
+}
+
+
+
+Q2
+import java.util.Scanner;
+
+public class MatrixOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+        do {
+            System.out.println("Matrix Operations Menu");
+            System.out.println("1. Addition");
+            System.out.println("2. Multiplication");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    performMatrixAddition(scanner);
+                    break;
+                case 2:
+                    performMatrixMultiplication(scanner);
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+                    break;
+            }
+
+            System.out.println();
+        } while (choice != 3);
+
+        scanner.close();
+    }
+
+    private static void performMatrixAddition(Scanner scanner) {
+        System.out.println("Matrix Addition");
+        System.out.print("Enter the number of rows in the matrices: ");
+        int rows = scanner.nextInt();
+        System.out.print("Enter the number of columns in the matrices: ");
+        int columns = scanner.nextInt();
+
+        int[][] matrix1 = readMatrix(scanner, rows, columns, "first");
+        int[][] matrix2 = readMatrix(scanner, rows, columns, "second");
+
+        int[][] resultMatrix = new int[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                resultMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        System.out.println("Resultant Matrix:");
+        printMatrix(resultMatrix);
+    }
+
+    private static void performMatrixMultiplication(Scanner scanner) {
+        System.out.println("Matrix Multiplication");
+        System.out.print("Enter the number of rows in the first matrix: ");
+        int rows1 = scanner.nextInt();
+        System.out.print("Enter the number of columns in the first matrix: ");
+        int columns1 = scanner.nextInt();
+        System.out.print("Enter the number of columns in the second matrix: ");
+        int columns2 = scanner.nextInt();
+
+        int[][] matrix1 = readMatrix(scanner, rows1, columns1, "first");
+        int[][] matrix2 = readMatrix(scanner, columns1, columns2, "second");
+
+        int[][] resultMatrix = new int[rows1][columns2];
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < columns2; j++) {
+                for (int k = 0; k < columns1; k++) {
+                    resultMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+
+        System.out.println("Resultant Matrix:");
+        printMatrix(resultMatrix);
+    }
+
+    private static int[][] readMatrix(Scanner scanner, int rows, int columns, String ordinal) {
+        System.out.println("Enter the elements of the " + ordinal + " matrix:");
+        int[][] matrix = new int[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print("Enter element at position (" + (i + 1) + ", " + (j + 1) + "): ");
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+        return matrix;
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
